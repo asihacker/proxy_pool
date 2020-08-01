@@ -30,7 +30,7 @@ SHOW_CONFIG = True            # print key config
 # ############### server config ###############
 HOST = "0.0.0.0"
 
-PORT = 5010
+PORT = 39100
 
 # ############### db config ###################
 # db connection uri
