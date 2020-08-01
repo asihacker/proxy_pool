@@ -102,7 +102,7 @@ class ProxyFetcher(object):
                 pass
 
     @staticmethod
-    def freeProxy03(page_count=1):
+    def freeProxy03(page_count=5):
         """
         西刺代理 http://www.xicidaili.com
         :return:
@@ -160,7 +160,7 @@ class ProxyFetcher(object):
                 pass
 
     @staticmethod
-    def freeProxy05(page_count=1):
+    def freeProxy05(page_count=5):
         """
         快代理 https://www.kuaidaili.com
         """
@@ -227,7 +227,7 @@ class ProxyFetcher(object):
                 yield ":".join(proxy)
 
     @staticmethod
-    def freeProxy09(page_count=1):
+    def freeProxy09(page_count=5):
         """
         http://ip.jiangxianli.com/?page=
         免费代理库
@@ -281,7 +281,7 @@ class ProxyFetcher(object):
     #             yield ':'.join(proxy)
 
     @staticmethod
-    def freeProxy13(max_page=2):
+    def freeProxy13(max_page=5):
         """
         http://www.qydaili.com/free/?action=china&page=1
         齐云代理
