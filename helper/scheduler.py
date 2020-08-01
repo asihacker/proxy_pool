@@ -47,7 +47,7 @@ def runScheduler():
     scheduler_log = LogHandler("scheduler")
     scheduler = BlockingScheduler(logger=scheduler_log)
 
-    scheduler.add_job(runProxyFetch, 'interval', minutes=3, id="proxy_fetch", name="proxy采集")
+    scheduler.add_job(runProxyFetch, 'interval', minutes=1, id="proxy_fetch", name="proxy采集")
     scheduler.add_job(runProxyCheck, 'interval', minutes=1, id="proxy_check", name="proxy检查")
 
     executors = {

@@ -101,26 +101,26 @@ class ProxyFetcher(object):
                 print(e)
                 pass
 
-    @staticmethod
-    def freeProxy03(page_count=5):
-        """
-        西刺代理 http://www.xicidaili.com
-        :return:
-        """
-        url_list = [
-            'http://www.xicidaili.com/nn/',  # 高匿
-            'http://www.xicidaili.com/nt/',  # 透明
-        ]
-        for each_url in url_list:
-            for i in range(1, page_count + 1):
-                page_url = each_url + str(i)
-                tree = WebRequest().get(page_url).tree
-                proxy_list = tree.xpath('.//table[@id="ip_list"]//tr[position()>1]')
-                for proxy in proxy_list:
-                    try:
-                        yield ':'.join(proxy.xpath('./td/text()')[0:2])
-                    except Exception as e:
-                        pass
+    # @staticmethod
+    # def freeProxy03(page_count=20):
+    #     """
+    #     西刺代理 http://www.xicidaili.com
+    #     :return:
+    #     """
+    #     url_list = [
+    #         'http://www.xicidaili.com/nn/',  # 高匿
+    #         'http://www.xicidaili.com/nt/',  # 透明
+    #     ]
+    #     for each_url in url_list:
+    #         for i in range(1, page_count + 1):
+    #             page_url = each_url + str(i)
+    #             tree = WebRequest().get(page_url).tree
+    #             proxy_list = tree.xpath('.//table[@id="ip_list"]//tr[position()>1]')
+    #             for proxy in proxy_list:
+    #                 try:
+    #                     yield ':'.join(proxy.xpath('./td/text()')[0:2])
+    #                 except Exception as e:
+    #                     pass
 
     @staticmethod
     def freeProxy04():
@@ -160,7 +160,7 @@ class ProxyFetcher(object):
                 pass
 
     @staticmethod
-    def freeProxy05(page_count=5):
+    def freeProxy05(page_count=20):
         """
         快代理 https://www.kuaidaili.com
         """
@@ -227,7 +227,7 @@ class ProxyFetcher(object):
                 yield ":".join(proxy)
 
     @staticmethod
-    def freeProxy09(page_count=5):
+    def freeProxy09(page_count=20):
         """
         http://ip.jiangxianli.com/?page=
         免费代理库
@@ -281,7 +281,7 @@ class ProxyFetcher(object):
     #             yield ':'.join(proxy)
 
     @staticmethod
-    def freeProxy13(max_page=5):
+    def freeProxy13(max_page=20):
         """
         http://www.qydaili.com/free/?action=china&page=1
         齐云代理
@@ -299,7 +299,7 @@ class ProxyFetcher(object):
                 yield ':'.join(proxy)
 
     @staticmethod
-    def freeProxy14(max_page=2):
+    def freeProxy14(max_page=20):
         """
         http://www.89ip.cn/index.html
         89免费代理
