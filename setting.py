@@ -60,7 +60,7 @@ PROXY_FETCHER = [
 ]
 
 # ############# proxy validator #################
-VERIFY_RUL = "http://www.baidu.com"
+VERIFY_RUL = "https://www.ebay.com/"
 
 VERIFY_TIMEOUT = 5
 
