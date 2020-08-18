@@ -45,13 +45,24 @@ TABLE_NAME = 'use_proxy'
 
 # ###### config the proxy fetch function ######
 PROXY_FETCHER = [
-    "freeProxy01"
+    "freeProxy01",
+    "freeProxy02",
+    # "freeProxy03",
+    "freeProxy04",
+    "freeProxy05",
+    "freeProxy06",
+    "freeProxy07",
+    "freeProxy08",
+    "freeProxy09",
+    "freeProxy13",
+    "freeProxy14",
+    "freeProxy15",
 ]
 
 # ############# proxy validator #################
-VERIFY_RUL = "https://www.baidu.com/"
+VERIFY_RUL = "http://www.baidu.com"
 
-VERIFY_TIMEOUT = 10
+VERIFY_TIMEOUT = 5
 
 MAX_FAIL_COUNT = 0
 
