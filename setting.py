@@ -49,8 +49,8 @@ PROXY_FETCHER = [
     "freeProxy02",
     # "freeProxy03",
     "freeProxy04",
-    "freeProxy05",
-    "freeProxy06",
+    # "freeProxy05",
+    # "freeProxy06",
     "freeProxy07",
     "freeProxy08",
     "freeProxy09",
@@ -60,9 +60,9 @@ PROXY_FETCHER = [
 ]
 
 # ############# proxy validator #################
-VERIFY_RUL = "http://www.baidu.com"
+VERIFY_RUL = "https://offer.ebay.com/ws/eBayISAPI.dll?ViewBidsLogin"
 
-VERIFY_TIMEOUT = 5
+VERIFY_TIMEOUT = 10
 
 MAX_FAIL_COUNT = 0
 
