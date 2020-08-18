@@ -15,6 +15,8 @@ __author__ = 'JHao'
 import re
 from time import sleep
 
+import requests
+
 from util.webRequest import WebRequest
 
 
@@ -30,28 +32,16 @@ class ProxyFetcher(object):
         几乎没有能用的
         :return:
         """
-        url_list = [
-            'http://www.data5u.com/',
-            'http://www.data5u.com/free/gngn/index.shtml',
-            'http://www.data5u.com/free/gnpt/index.shtml'
-        ]
-        key = 'ABCDEFGHIZ'
-        for url in url_list:
-            html_tree = WebRequest().get(url).tree
-            ul_list = html_tree.xpath('//ul[@class="l2"]')
-            for ul in ul_list:
-                try:
-                    ip = ul.xpath('./span[1]/li/text()')[0]
-                    classnames = ul.xpath('./span[2]/li/attribute::class')[0]
-                    classname = classnames.split(' ')[1]
-                    port_sum = 0
-                    for c in classname:
-                        port_sum *= 10
-                        port_sum += key.index(c)
-                    port = port_sum >> 3
-                    yield '{}:{}'.format(ip, port)
-                except Exception as e:
-                    print(e)
+        try:
+            back_json = requests.get(
+                "http://ip.ipjldl.com/api/entry?method=proxyServer.ipinfolist&packid=1&fa=0&fetch_key=&time=1&quantity="
+                "50&province=&city=&anonymous=1&ms=1&service=0&protocol=1&format=json&separator=1&separator_txt=").json()
+            for key in back_json['data']['list']['ProxyIpInfoList']:
+                yield '{}:{}'.format(key['IP'], key['Port'])
+        except Exception as e:
+            print(e)
+            return
+
 
     @staticmethod
     def freeProxy02(count=20):
