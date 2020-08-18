@@ -85,7 +85,6 @@ class ProxyFetcher(object):
                 print(e)
                 pass
 
-
     @staticmethod
     def freeProxy04():
         """
@@ -128,6 +127,10 @@ class ProxyFetcher(object):
         """
         快代理 https://www.kuaidaili.com
         """
+        a = requests.get(
+            "http://ip.ipjldl.com/api/entry?method=proxyServer.ipinfolist&packid=0&fa=0"
+            "&fetch_key=&time=102&quantity=1&province=&city=&anonymous=1&ms=1"
+            "&service=0&protocol=1&format=txt&separator=1&separator_txt=").text
         url_pattern = [
             'https://www.kuaidaili.com/free/inha/{}/',
             'https://www.kuaidaili.com/free/intr/{}/'
@@ -138,12 +141,11 @@ class ProxyFetcher(object):
                 url_list.append(pattern.format(page_index))
 
         for url in url_list:
-            tree = WebRequest().get(url).tree
+            tree = WebRequest().get(url, proxies={"https": f"https://{a}"}).tree
             proxy_list = tree.xpath('.//table//tr')
             sleep(1)  # 必须sleep 不然第二条请求不到数据
             for tr in proxy_list[1:]:
                 yield ':'.join(tr.xpath('./td/text()')[0:2])
-
 
     @staticmethod
     def freeProxy07():
