@@ -34,14 +34,13 @@ class ProxyFetcher(object):
         """
         try:
             back_json = requests.get(
-                "http://ip.ipjldl.com/api/entry?method=proxyServer.ipinfolist&packid=1&fa=0&fetch_key=&time=1&quantity="
-                "50&province=&city=&anonymous=1&ms=1&service=0&protocol=1&format=json&separator=1&separator_txt=").json()
+                "http://ip.ipjldl.com/api/entry?method=proxyServer.ipinfolist&packid=0&fa=0&fetch_key=&time=100"
+                "&quantity=20&province=&city=&anonymous=1&ms=1&service=0&protocol=1&format=json&separator=1&separator_txt=").json()
             for key in back_json['data']['list']['ProxyIpInfoList']:
                 yield '{}:{}'.format(key['IP'], key['Port'])
         except Exception as e:
             print(e)
             return
-
 
     @staticmethod
     def freeProxy02(count=20):
