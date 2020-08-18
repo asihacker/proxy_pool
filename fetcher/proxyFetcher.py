@@ -307,10 +307,9 @@ class ProxyFetcher(object):
 
     @staticmethod
     def freeProxy15():
-        urls = ['http://www.xiladaili.com/putong/',
-                "http://www.xiladaili.com/gaoni/",
-                "http://www.xiladaili.com/http/",
-                "http://www.xiladaili.com/https/"]
+        import random
+        random.seed()
+        urls = [f"http://www.xiladaili.com/https/{random.randint(1, 1000)}" for _ in range(10)]
         for url in urls:
             r = WebRequest().get(url, timeout=10)
             ips = re.findall(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}", r.text)
