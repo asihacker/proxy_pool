@@ -51,8 +51,8 @@ def runScheduler():
     scheduler.add_job(runProxyCheck, 'interval', minutes=1, id="proxy_check", name="proxy检查")
 
     executors = {
-        'default': {'type': 'threadpool', 'max_workers': 500},
-        'processpool': ProcessPoolExecutor(max_workers=30)
+        'default': {'type': 'threadpool', 'max_workers': 40},
+        'processpool': ProcessPoolExecutor(max_workers=20)
     }
     job_defaults = {
         'coalesce': False,
