@@ -344,13 +344,12 @@ class ProxyFetcher(object):
                 "http://www.xiladaili.com/http/",
                 "http://www.xiladaili.com/https/"]
         for url in urls:
-            for page in range(100):
-                # 14.116.209.147:28803
-                proxies = {
-                    "http": "http://14.116.209.147:28803",
-                    "https": "https://14.116.209.147:28803",
-                }
-                r = WebRequest().get(url + str(page) + '/', timeout=10, proxies=proxies)
-                ips = re.findall(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}", r.text)
-                for ip in ips:
-                    yield ip.strip()
+            # 14.116.209.147:28803
+            proxies = {
+                "http": "http://14.116.209.147:28803",
+                "https": "https://14.116.209.147:28803",
+            }
+            r = WebRequest().get(url, timeout=10, proxies=proxies)
+            ips = re.findall(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}", r.text)
+            for ip in ips:
+                yield ip.strip()
