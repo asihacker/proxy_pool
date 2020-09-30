@@ -347,8 +347,8 @@ class ProxyFetcher(object):
             for page in range(100):
                 # 14.116.209.147:28803
                 proxies = {
-                    "http": "14.116.209.147:28803",
-                    "https": "14.116.209.147:28803",
+                    "http": "http://14.116.209.147:28803",
+                    "https": "https://14.116.209.147:28803",
                 }
                 r = WebRequest().get(url + str(page) + '/', timeout=10, proxies=proxies)
                 ips = re.findall(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}", r.text)
