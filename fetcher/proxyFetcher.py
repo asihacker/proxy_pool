@@ -32,8 +32,8 @@ class ProxyFetcher(object):
         """
         url_list = [
             'http://www.data5u.com/',
-            'http://www.data5u.com/free/gngn/index.shtml',
-            'http://www.data5u.com/free/gnpt/index.shtml'
+            # 'http://www.data5u.com/free/gngn/index.shtml',
+            # 'http://www.data5u.com/free/gnpt/index.shtml'
         ]
         key = 'ABCDEFGHIZ'
         for url in url_list:
@@ -160,7 +160,7 @@ class ProxyFetcher(object):
                 pass
 
     @staticmethod
-    def freeProxy05(page_count=1):
+    def freeProxy05(page_count=100):
         """
         快代理 https://www.kuaidaili.com
         """
@@ -199,8 +199,22 @@ class ProxyFetcher(object):
         云代理 http://www.ip3366.net/free/
         :return:
         """
-        urls = ['http://www.ip3366.net/free/?stype=1',
-                "http://www.ip3366.net/free/?stype=2"]
+        urls = [
+            'http://www.ip3366.net/free/?stype=1&page=1',
+            'http://www.ip3366.net/free/?stype=1&page=2',
+            'http://www.ip3366.net/free/?stype=1&page=3',
+            'http://www.ip3366.net/free/?stype=1&page=4',
+            'http://www.ip3366.net/free/?stype=1&page=5',
+            'http://www.ip3366.net/free/?stype=1&page=6',
+            'http://www.ip3366.net/free/?stype=1&page=7',
+            "http://www.ip3366.net/free/?stype=2&page=1",
+            "http://www.ip3366.net/free/?stype=2&page=2",
+            "http://www.ip3366.net/free/?stype=2&page=3",
+            "http://www.ip3366.net/free/?stype=2&page=4",
+            "http://www.ip3366.net/free/?stype=2&page=5",
+            "http://www.ip3366.net/free/?stype=2&page=6",
+            "http://www.ip3366.net/free/?stype=2&page=7",
+        ]
         for url in urls:
             r = WebRequest().get(url, timeout=10)
             proxies = re.findall(r'<td>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</td>[\s\S]*?<td>(\d+)</td>', r.text)
@@ -227,14 +241,14 @@ class ProxyFetcher(object):
                 yield ":".join(proxy)
 
     @staticmethod
-    def freeProxy09(page_count=1):
+    def freeProxy09(page_count=12):
         """
         http://ip.jiangxianli.com/?page=
         免费代理库
         :return:
         """
         for i in range(1, page_count + 1):
-            url = 'http://ip.jiangxianli.com/?country=中国&page={}'.format(i)
+            url = 'http://ip.jiangxianli.com/?page={}'.format(i)
             html_tree = WebRequest().get(url).tree
             for index, tr in enumerate(html_tree.xpath("//table//tr")):
                 if index == 0:
@@ -270,15 +284,22 @@ class ProxyFetcher(object):
     #         for proxy in proxies:
     #             yield base64.b64decode(proxy).decode()
 
-    # @staticmethod
-    # def freeProxy12():
-    #     urls = ['https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1']
-    #     request = WebRequest()
-    #     for url in urls:
-    #         r = request.get(url, timeout=10)
-    #         proxies = re.findall(r'<td>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</td>[\s\S]*?<td>(\d+)</td>', r.text)
-    #         for proxy in proxies:
-    #             yield ':'.join(proxy)
+    @staticmethod
+    def freeProxy12():
+        urls = [
+            'https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-1',
+            'https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-2',
+            'https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-3',
+            'https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-4',
+            'https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-5',
+            'https://list.proxylistplus.com/Fresh-HTTP-Proxy-List-6',
+        ]
+        request = WebRequest()
+        for url in urls:
+            r = request.get(url, timeout=10)
+            proxies = re.findall(r'<td>(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})</td>[\s\S]*?<td>(\d+)</td>', r.text)
+            for proxy in proxies:
+                yield ':'.join(proxy)
 
     @staticmethod
     def freeProxy13(max_page=2):
@@ -299,7 +320,7 @@ class ProxyFetcher(object):
                 yield ':'.join(proxy)
 
     @staticmethod
-    def freeProxy14(max_page=2):
+    def freeProxy14(max_page=200):
         """
         http://www.89ip.cn/index.html
         89免费代理
@@ -323,7 +344,8 @@ class ProxyFetcher(object):
                 "http://www.xiladaili.com/http/",
                 "http://www.xiladaili.com/https/"]
         for url in urls:
-            r = WebRequest().get(url, timeout=10)
-            ips = re.findall(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}", r.text)
-            for ip in ips:
-                yield ip.strip()
+            for page in range(50):
+                r = WebRequest().get(url + str(page) + '/', timeout=10)
+                ips = re.findall(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}", r.text)
+                for ip in ips:
+                    yield ip.strip()
